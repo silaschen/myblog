@@ -12,6 +12,7 @@
 */
 
 Route::get('/', "Index@index");
+Route::get('list/{page}',"Index@list");
 Route::get('read/{id}',"Index@read");
 Route::any('write',"Index@write");
 Route::post('uploadImg',"Index@uploadImg");
