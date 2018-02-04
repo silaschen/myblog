@@ -7,9 +7,20 @@ class Index extends Controller{
 
 	public function index(){
 		
-		$list = DB::select("select * from blog order by updatetime desc");
+		$list = DB::select("select * from blog order by updatetime desc limit ?,4",[0]);
 
-		return view('index/index',['list'=>$list]);
+
+		return view('index/index',['list'=>$list,'nowpage'=>1]);
+
+	}
+
+	public function list($page){
+		$page = $page?$page:1;
+		$start = ($page-1)*4;
+		$list = DB::select("select * from blog order by updatetime desc limit ?,4",[$start]);
+
+
+		return view('index/list',['list'=>$list,'nowpage'=>$page]);
 
 	}
 
