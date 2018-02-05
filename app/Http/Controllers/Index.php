@@ -27,7 +27,7 @@ class Index extends Controller{
 	//READ BLOG
 	public function read($id){
 		$blog = DB::select("select * from blog where id=?",[$id]);
-		DB::update("update blog set view=?",[$blog['view']+1]);
+		DB::update("update blog set view=? where id=?",[$blog['view']+1,$id]);
 		return view('index/read',['blog'=>$blog]);
 
 	}
