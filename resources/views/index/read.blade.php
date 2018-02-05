@@ -5,7 +5,7 @@
     <div class="am-u-sm-12">
       <article class="am-article blog-article-p">
         <div class="am-article-hd">
-          <h1 class="am-article-title blog-text-center">我的文章哎</h1>
+          <h1 class="am-article-title blog-text-center">article</h1>
           <p class="am-article-meta blog-text-center">
               <span><a href="#" class="blog-color">article &nbsp;</a></span>-
               <span><a href="#">@amazeUI &nbsp;</a></span>-
@@ -13,10 +13,10 @@
           </p>
         </div>        
         <div class="am-article-bd">
-        <img src="assets/i/f17.jpg" alt="" class="blog-entry-img blog-article-margin">          
+        <img src="{{config('app.url')}}/{{$blog->cover}}" alt="" class="blog-entry-img blog-article-margin">          
         <p class="class="am-article-lead"">
          炊烟 <br>
-／阿城 <br><br>
+／4w <br><br>
 
 
 老张得了一个闺女。老张说，挺好，就是大了别长得像我，那可嫁不出去了。因此，女儿名美丽，自然姓张。 
@@ -99,16 +99,7 @@
         <form class="am-form am-g">
             <h3 class="blog-comment">评论</h3>
           <fieldset>
-            <div class="am-form-group am-u-sm-4 blog-clear-left">
-              <input type="text" class="" placeholder="名字">
-            </div>
-            <div class="am-form-group am-u-sm-4">
-              <input type="email" class="" placeholder="邮箱">
-            </div>
 
-            <div class="am-form-group am-u-sm-4 blog-clear-right">
-              <input type="password" class="" placeholder="网站">
-            </div>
         
             <div class="am-form-group">
               <textarea class="" rows="5" placeholder="一字千金"></textarea>
