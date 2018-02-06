@@ -8,9 +8,9 @@ class Index extends Controller{
 	public function index(){
 		
 		$list = DB::select("select * from blog order by updatetime desc limit ?,4",[0]);
+		$rank=DB::select("select * from blog order by view desc limit 3");
 
-
-		return view('index/index',['list'=>$list,'nowpage'=>1]);
+		return view('index/index',['list'=>$list,'nowpage'=>1,'rank'=>$rank]);
 
 	}
 
