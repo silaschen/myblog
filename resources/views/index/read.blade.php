@@ -8,8 +8,8 @@
           <h1 class="am-article-title blog-text-center">article</h1>
           <p class="am-article-meta blog-text-center">
               <span><a href="#" class="blog-color">article &nbsp;</a></span>-
-              <span><a href="#">@amazeUI &nbsp;</a></span>-
-              <span><a href="#">2015/10/9</a></span>
+              <span><a href="#">@4w&nbsp;</a></span>-
+              <span><a href="#">{{date('M d,Y',$blog->updatetime)}}</a></span>
           </p>
         </div>        
         <div class="am-article-bd">
@@ -31,17 +31,17 @@
         <hr>
         <div class="am-g blog-author blog-article-margin">
           <div class="am-u-sm-3 am-u-md-3 am-u-lg-2">
-            <img src="assets/i/f15.jpg" alt="" class="blog-author-img am-circle">
+            <img src="{{config('app.url')}}/assets/i/f14.jpg" alt="" class="blog-author-img am-circle">
           </div>
           <div class="am-u-sm-9 am-u-md-9 am-u-lg-10">
-          <h3><span>作者 &nbsp;: &nbsp;</span><span class="blog-color">amazeui</span></h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+          <h3><span>作者 &nbsp;: &nbsp;</span><span class="blog-color">4w</span></h3>
+            <p>我们不必羡慕他人的才能，也不必悲叹自己的平庸，各人都有他的个性魅力。</p>
           </div>
         </div>
         <hr>
         <ul class="am-pagination blog-article-margin">
-          <li class="am-pagination-prev"><a href="#" class="">&laquo; 一切的回顾</a></li>
-          <li class="am-pagination-next"><a href="">不远的未来 &raquo;</a></li>
+          <li class="am-pagination-prev"><a href="#" class="">next</a></li>
+          <li class="am-pagination-next"><a href="">prev</a></li>
         </ul>
         
         <hr>
