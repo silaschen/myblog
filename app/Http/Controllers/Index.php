@@ -43,23 +43,23 @@ class Index extends Controller{
 			$data['uid'] = 1;
 			$data['updatetime'] = time();
 			$tag = explode(" ", $data['tag']);
-			DB::beginTransaction();
 
-			$sql1 = DB::table('blog')->insert($data);
+
+			$sql1 = DB::table('blog')->insertGetId($data);
 			if($tag){
 
 				for ($i=0; $i < count($tag); $i++) { 
 					
-
-					$flag = DB::select("select * from tag where name=?",[$tag[$i]]);
+					$flag = DB::select("select * from tag where name=?",[$tag[$i]])[0];
 					if($flag){
-						DB::update("update tag set relation=?",[$flag[0]->relation+1]);
+						DB::update("update tag set relation=? where id=?",[$flag->relation+1,$flag->id]);
+						$tagid = $flag->id;
 					}else{
 
-						DB::table("tag")->insert(['name'=>$tag['id'],'relation'=>1]);
+						$tagid = DB::table("tag")->insertGetId(['name'=>$tag['id'],'relation'=>1]);
 					}
 
-					DB::table();
+					DB::insert("insert into tag_blog (tagid,blogid) values (?,?)",[$tagid,$sql1]);
 				}
 
 
