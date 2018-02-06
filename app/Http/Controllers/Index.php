@@ -42,10 +42,29 @@ class Index extends Controller{
 			$data = $_POST;
 			$data['uid'] = 1;
 			$data['updatetime'] = time();
-			DB::table('blog')->insert($data);
+			$tag = explode(" ", $data['tag']);
+			DB::beginTransaction();
+
+			$sql1 = DB::table('blog')->insert($data);
+			if($tag){
+
+				for ($i=0; $i < count($tag); $i++) { 
+					
+
+					$flag = DB::select("select * from tag where name=?",[$tag[$i]]);
+					if($flag){
+						DB::update("update tag set relation=?",[$flag[0]->relation+1]);
+					}else{
+
+						DB::table("tag")->insert(['name'=>$tag['id'],'relation'=>1]);
+					}
+
+					DB::table();
+				}
+
+
+			}
 			exit(json_encode(['s'=>1]));
-
-
 		}
 
 
@@ -63,11 +82,6 @@ class Index extends Controller{
 			move_uploaded_file($file['tmp_name'],$filename);
 			exit(json_encode(['file'=>$filename,'ret'=>1]));
 		
-
-
-
-			
-
 		}
 
 

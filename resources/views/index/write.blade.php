@@ -31,6 +31,12 @@
               <label>内容：</label>
                 <textarea id="editor_id" name="content" style="width:100%;min-height:260px;"></textarea>
             </div>
+
+
+            <div class="form-group">
+              <label>tag(请用空格 隔开)</label>
+              <input type="text" name="tag" class="form-control">
+            </div>
    
       
          </form>
