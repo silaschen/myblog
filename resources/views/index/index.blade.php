@@ -74,7 +74,7 @@
                 <span><a href="" class="blog-color">article &nbsp;</a></span>
                 <span> @4w &nbsp;</span>
                 <span>{{date('Y-m-d',$vo->updatetime)}}</span>
-                <h1><a href="read/{{$vo->id}}">{{$vo->title}}</a></h1>
+                <h1><a href="{{url('read')}}/{{$vo->id}}">{{$vo->title}}</a></h1>
                 <p>我们一直在坚持着，不是为了改变这个世界，而是希望不被这个世界所改变。
                 </p>
                 <p><a href="" class="blog-continue">continue reading</a></p>
@@ -114,9 +114,9 @@
             <h2 class="blog-title"><span>TAG cloud</span></h2>
             <div class="am-u-sm-12 blog-clear-padding">
 
-
-            <a href="" class="blog-tag">git</a>
-         
+                @foreach($tag as $v)
+            <a href="" class="blog-tag">{{$v->name}}</a>
+         @endforeach
             </div>
         </div>
         <div class="blog-sidebar-widget blog-bor">

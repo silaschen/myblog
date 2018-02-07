@@ -19,7 +19,7 @@
                 <span><a href="" class="blog-color">article &nbsp;</a></span>
                 <span> @4w &nbsp;</span>
                 <span>{{date('Y-m-d',$vo->updatetime)}}</span>
-                <h1><a href="read/{{$vo->id}}">{{$vo->title}}</a></h1>
+                <h1><a href="{{url('read')}}/{{$vo->id}}">{{$vo->title}}</a></h1>
                 <p>我们一直在坚持着，不是为了改变这个世界，而是希望不被这个世界所改变。
                 </p>
                 <p><a href="" class="blog-continue">continue reading</a></p>
@@ -45,7 +45,6 @@
             <img src="{{config('app.url')}}/assets/i/f14.jpg" alt="about me" class="blog-entry-img" >
             <p>Boy</p>
             <p>
-        I am 4w,a name from siwei.chen.
         </p><p>我不想成为一个庸俗的人。十年百年后，当我们死去，质疑我们的人同样死去，后人看到的是裹足不前、原地打转的你，还是一直奔跑、走到远方的我？</p>
         </div>
         <div class="blog-sidebar-widget blog-bor">
@@ -68,12 +67,9 @@
             </div>
         </div>
         <div class="blog-sidebar-widget blog-bor">
-            <h2 class="blog-title"><span>么么哒</span></h2>
+            <h2 class="blog-title"><span>blog rank</span></h2>
             <ul class="am-list">
-                <li><a href="#">每个人都有一个死角， 自己走不出来，别人也闯不进去。</a></li>
-                <li><a href="#">我把最深沉的秘密放在那里。</a></li>
-                <li><a href="#">你不懂我，我不怪你。</a></li>
-                <li><a href="#">每个人都有一道伤口， 或深或浅，盖上布，以为不存在。</a></li>
+               @foreach($rank as $rvo) <li><a href="{{url('read')}}/{{$rvo->id}}"}>{{$rvo->title}}</a></li>@endforeach
             </ul>
         </div>
     </div>
