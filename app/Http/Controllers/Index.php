@@ -40,23 +40,27 @@ class Index extends Controller{
 		}else{
 
 			$data = $_POST;
-			$data['uid'] = 1;
-			$data['updatetime'] = time();
+			$blog['uid'] = 1;
+			$blog['updatetime'] = time();
+			$blog['title']= $data['title'];
+			$blog['cover'] = $data['cover'];
+			$blog['content']= $data['content'];
 			$tag = explode(" ", $data['tag']);
+			
 
-
-			$sql1 = DB::table('blog')->insertGetId($data);
+			$sql1 = DB::table('blog')->insertGetId($blog);
 			if($tag){
 
 				for ($i=0; $i < count($tag); $i++) { 
 					
-					$flag = DB::select("select * from tag where name=?",[$tag[$i]])[0];
+					$flag = DB::select("select * from tag where name=?",[$tag[$i]]);
+			$flag = $flag?$flag[0]:null;
 					if($flag){
 						DB::update("update tag set relation=? where id=?",[$flag->relation+1,$flag->id]);
 						$tagid = $flag->id;
 					}else{
 
-						$tagid = DB::table("tag")->insertGetId(['name'=>$tag['id'],'relation'=>1]);
+						$tagid = DB::table("tag")->insertGetId(['name'=>$tag[$i],'relation'=>1]);
 					}
 
 					DB::insert("insert into tag_blog (tagid,blogid) values (?,?)",[$tagid,$sql1]);
