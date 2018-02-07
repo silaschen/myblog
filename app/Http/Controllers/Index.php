@@ -18,9 +18,10 @@ class Index extends Controller{
 		$page = $page?$page:1;
 		$start = ($page-1)*4;
 		$list = DB::select("select * from blog order by updatetime desc limit ?,4",[$start]);
+		$rank=DB::select("select * from blog order by view desc limit 3");
+		$tag = DB::select("select * from tag order by relation desc");
 
-
-		return view('index/list',['list'=>$list,'nowpage'=>$page]);
+		return view('index/list',['list'=>$list,'nowpage'=>$page,'rank'=>$rank,'tag'=>$tag]);
 
 	}
 
