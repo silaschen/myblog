@@ -29,7 +29,7 @@
 <!-- <header class="am-g am-g-fixed blog-fixed blog-text-center blog-header">
     <div class="am-u-sm-8 am-u-sm-centered">
         <img width="200" src="http://s.amazeui.org/media/i/brand/amazeui-b.png" alt="Amaze UI Logo"/>
-        <h2 class="am-hide-sm-only">中国首个开源 HTML5 跨屏前端框架</h2>
+        <h2 class="am-hide-sm-only">made by laravel</h2>
     </div>
 </header> -->
 <hr>
@@ -44,11 +44,12 @@
       <li><a href="lw-img.html">album</a></li>
       <li><a href="lw-timeline.html">about me</a></li>
     </ul>
-    <form class="am-topbar-form am-topbar-right am-form-inline" role="search">
-      <div class="am-form-group">
-        <input type="text" class="am-form-field am-input-sm" placeholder="搜索">
+
+      <div class="am-form-group input-group">
+        <input type="text" name="search_text" class="am-form-field am-input-sm form-control" placeholder="search what u want...">
+        <label class="input-group-addon"  onclick="search()"><i class="glyphicon glyphicon-search"></i></label>
       </div>
-    </form>
+
   </div>
 </nav>
 <hr>
@@ -74,25 +75,20 @@
            
                 <a href="javascript:alert('talentchensw')"><span class="am-icon-weixin am-icon-fw blog-icon blog-icon"></span></a>
             </p>
-            <h3>Credits</h3>
             <p>I am a slow walker,but I never walk backwards.</p>          
         </div>
    
     </div>    
-    <div class="blog-text-center">© {{date('Y',time())}} 4wBlog  Made with love By chen siwei</div>  </footer>
+    <div class="blog-text-center">© {{date('Y',time())}} 4wBlog all reserved By chen siwei</div>  </footer>
 
 
-
-
-
-<!--[if (gte IE 9)|!(IE)]><!-->
-
-<!--<![endif]-->
-<!--[if lte IE 8 ]>
-<script src="http://libs.baidu.com/jquery/1.11.3/jquery.min.js"></script>
-<script src="http://cdn.staticfile.org/modernizr/2.8.3/modernizr.js"></script>
-<script src="{{config('app.url')}}/assets/js/amazeui.ie8polyfill.min.js"></script>
-<![endif]-->
 <script src="{{config('app.url')}}/assets/js/amazeui.min.js"></script>
+
+<script type="text/javascript">
+  
+  function search(){
+    loadblog();
+  }
+</script>
 </body>
 </html>

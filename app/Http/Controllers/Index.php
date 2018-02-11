@@ -7,11 +7,10 @@ class Index extends Controller{
 	
 
 	public function index(){
-		
-		$list = DB::select("select * from blog order by updatetime desc limit ?,4",[0]);
+
 		$rank=DB::select("select * from blog order by view desc limit 3");
 		$tag = DB::select("select * from tag order by relation desc");
-		return view('index/index',['list'=>$list,'nowpage'=>1,'rank'=>$rank,'tag'=>$tag]);
+		return view('index/index',['nowpage'=>1,'rank'=>$rank,'tag'=>$tag]);
 
 	}
 
@@ -27,30 +26,20 @@ class Index extends Controller{
 		
 			$sql .= "and id in %s ";
 			$sql .= " order by updatetime desc limit %d,%d";
-			
 			$sql = sprintf($sql,"%".$search."%","(select blogid from tag_blog where tagid=$tag)",$start,PAGE_SIZE);
 		}else{
 			$sql .= " order by updatetime desc limit %d,%d";
 			$sql = sprintf($sql,"%".$search."%",$start,PAGE_SIZE);
-			
-
 		}
 		
 		$list = DB::select($sql);
+		array_map(function($ret){
+			return $ret['desc'] = substr($ret['content'], 0,20);
+		}, $list);
 		exit(json_encode(['blog'=>$list,'page'=>$page]));
 
 	}
 
-	public function list($page){
-		$page = $page?$page:1;
-		$start = ($page-1)*4;
-		$list = DB::select("select * from blog order by updatetime desc limit ?,4",[$start]);
-		$rank=DB::select("select * from blog order by view desc limit 3");
-		$tag = DB::select("select * from tag order by relation desc");
-
-		return view('index/list',['list'=>$list,'nowpage'=>$page,'rank'=>$rank,'tag'=>$tag]);
-
-	}
 
 	//READ BLOG
 	public function read($id){

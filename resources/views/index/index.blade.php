@@ -1,7 +1,7 @@
 @extends('index.layout')
 <!-- banner start -->
 @section('content')
-<div class="am-g am-g-fixed blog-fixed am-u-sm-centered blog-article-margin">
+<!-- <div class="am-g am-g-fixed blog-fixed am-u-sm-centered blog-article-margin">
     <div data-am-widget="slider" class="am-slider am-slider-b1" data-am-slider='{&quot;controlNav&quot;:false}' >
     <ul class="am-slides">
       <li>
@@ -55,7 +55,7 @@
       </li>
     </ul>
     </div>
-</div>
+</div> -->
 <!-- banner end -->
 
 
@@ -73,8 +73,6 @@
   <li class="am-pagination-next"><a href="javascript:pagego(2)">Next &raquo;</a></li>
 </ul>
     </div>
-
-
 
 
     <div class="am-u-md-4 am-u-sm-12 blog-sidebar">
@@ -107,7 +105,7 @@
 <script type="text/javascript">
     var tag = null;
     var page = 1;
-    var search = null;
+    var search = $("input[name='search_text']").val();
     function settag(id){
         tag=id;
         loadblog();
