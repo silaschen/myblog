@@ -149,7 +149,7 @@
                 <span> @4w &nbsp;</span>
                 <span>{{date('Y-m-d',`+v.updatetime+`)}}</span>
                 <h1><a href="{{url('read')}}/`+v.id+`">`+v.title+`</a></h1>
-                <p>我们一直在坚持着，不是为了改变这个世界，而是希望不被这个世界所改变。
+                <p>`+v.desc+`
                 </p>
                 <p><a href="" class="blog-continue">continue reading</a></p>
             </div>
