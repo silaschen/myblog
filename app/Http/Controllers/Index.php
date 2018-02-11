@@ -28,7 +28,7 @@ class Index extends Controller{
 			$sql .= "and id in %s ";
 			$sql .= " order by updatetime desc limit %d,%d";
 			
-			$sql = sprintf($sql,"%".$search."%","(select blogid from tag_blog where tag=$tag)",$start,PAGE_SIZE);
+			$sql = sprintf($sql,"%".$search."%","(select blogid from tag_blog where tagid=$tag)",$start,PAGE_SIZE);
 		}else{
 			$sql .= " order by updatetime desc limit %d,%d";
 			$sql = sprintf($sql,"%".$search."%",$start,PAGE_SIZE);
