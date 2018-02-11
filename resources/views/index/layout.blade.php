@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="description" content="this is chensiwei\'s blog site.">
-  <meta name="keywords" content="blog">
+  <meta name="description" content="">
+  <meta name="keywords" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>4wBLOG </title>
   <meta name="renderer" content="webkit">
@@ -44,12 +44,11 @@
       <li><a href="lw-img.html">album</a></li>
       <li><a href="lw-timeline.html">about me</a></li>
     </ul>
-
+    <form class="am-topbar-form am-topbar-right am-form-inline" role="search">
       <div class="am-form-group">
-        <input type="text" name="search_text" class="am-form-field am-input-sm" placeholder="search what u want...">
-  
+        <input type="text" class="am-form-field am-input-sm" placeholder="搜索">
       </div>
-
+    </form>
   </div>
 </nav>
 <hr>
