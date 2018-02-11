@@ -22,7 +22,7 @@ class Index extends Controller{
 		$page = filter_input(INPUT_POST, 'page') ? filter_input(INPUT_POST, 'page') :1;
 		$start = ($page-1)*PAGE_SIZE;
 
-		$sql = "select a.id,a.title,a.updatetime from blog where title like '%s' ";
+		$sql = "select id,title,updatetime from blog where title like '%s' ";
 		if($tag){
 		
 			$sql .= "and id in %s ";
