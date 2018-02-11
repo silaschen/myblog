@@ -89,7 +89,7 @@
             <div class="am-u-sm-12 blog-clear-padding">
 
                 @foreach($tag as $v)
-            <a href="javascript:settag({{$v['id']}})" class="blog-tag">{{$v->name}}</a>
+            <a href="javascript:settag({{$v->id}})" class="blog-tag">{{$v->name}}</a>
          @endforeach
             </div>
         </div>
