@@ -2,8 +2,9 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+define('PAGE_SIZE', 6);
 class Index extends Controller{
-	define('PAGE_SIZE', 6);
+	
 
 	public function index(){
 		
