@@ -3,7 +3,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 class Index extends Controller{
-
+	define('PAGE_SIZE', 6);
 
 	public function index(){
 		
@@ -11,6 +11,33 @@ class Index extends Controller{
 		$rank=DB::select("select * from blog order by view desc limit 3");
 		$tag = DB::select("select * from tag order by relation desc");
 		return view('index/index',['list'=>$list,'nowpage'=>1,'rank'=>$rank,'tag'=>$tag]);
+
+	}
+
+	public function blog(){
+
+		$tag = filter_input(INPUT_POST, 'tag') ? filter_input(INPUT_POST, 'tag') : null;
+		$search = filter_input(INPUT_POST, 'search') ? filter_input(INPUT_POST, 'search') :null;
+		$page = filter_input(INPUT_POST, 'page') ? filter_input(INPUT_POST, 'page') :1;
+		$start = ($page-1)*PAGE_SIZE;
+
+		$sql = "select a.id,a.title,a.updatetime from blog where title like '%s' ";
+		if($tag){
+		
+			$sql .= "and id in %s ";
+			$param = ["%".$search."%","(select blogid from tag_blog where tag='$tag')",$start,PAGE_SIZE];
+		}else{
+
+			$param = ["%".$search."%",$start,PAGE_SIZE];
+
+		}
+		$sql .= " order by updatetime desc limit %d,%d";
+
+		
+		$sql = sprintf($sql,$param);
+		var_dump($sql);
+		$list = DB::select($sql);
+		var_dump($list);
 
 	}
 

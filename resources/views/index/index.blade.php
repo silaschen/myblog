@@ -118,5 +118,34 @@
         </div>
     </div>
 </div>
+
+
+
+<script type="text/javascript">
+    
+    function loadblog(){
+
+
+         $.ajax({
+        type: 'POST',
+        url: "{{url('blog')}}",
+        data: {'tag':'','search':''},
+        dataType: 'json',
+        headers: {
+        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+        },
+        success: function(data){
+          console.log(data);
+        },
+        error: function(xhr, type){
+         alert('Ajax error!')
+        }
+        });
+
+    }
+loadblog();
+
+
+</script>
 <!-- content end -->
 @endsection
