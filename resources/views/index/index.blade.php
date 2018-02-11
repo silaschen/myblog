@@ -67,9 +67,9 @@
         <div id="blog_box"></div>
         
         <ul class="am-pagination">
-        @if($nowpage > 1)
+
   <li class="am-pagination-prev"><a href="pagego(1)">&laquo; Prev</a></li>
-  @endif
+
   <li class="am-pagination-next"><a href="javascript:pagego(2)">Next &raquo;</a></li>
 </ul>
     </div>
