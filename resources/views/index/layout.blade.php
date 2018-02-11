@@ -3,10 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="description" content="">
-  <meta name="keywords" content="">
+  <meta name="description" content="this is chensiwei\'s blog site.">
+  <meta name="keywords" content="blog">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>BLOG </title>
+  <title>4wBLOG </title>
   <meta name="renderer" content="webkit">
   <meta http-equiv="Cache-Control" content="no-siteapp"/>
   <link rel="icon" type="image/png" href="{{config('app.url')}}/assets/i/favicon.png">
@@ -14,7 +14,7 @@
   <link rel="icon" sizes="192x192" href="{{config('app.url')}}/assets/i/app-icon72x72@2x.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="Amaze UI"/>
+  <meta name="apple-mobile-web-app-title" content="blog"/>
   <meta name="_token" content="{{ csrf_token() }}"/>
   <link rel="apple-touch-icon-precomposed" href="{{config('app.url')}}/assets/i/app-icon72x72@2x.png">
   <meta name="msapplication-TileImage" content="{{config('app.url')}}/assets/i/app-icon72x72@2x.png">
@@ -83,6 +83,11 @@
 
 
 <script src="{{config('app.url')}}/assets/js/amazeui.min.js"></script>
+<script type="text/javascript">
+      function search(){
+    loadblog();
+  }
 
+</script>
 </body>
 </html>

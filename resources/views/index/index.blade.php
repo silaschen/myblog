@@ -113,10 +113,7 @@
     }
 
 
-     function search(){
-    loadblog();
-  }
-
+ 
 
     function pagego(direction){
         if(direction === 1){
