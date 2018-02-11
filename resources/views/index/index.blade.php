@@ -115,10 +115,10 @@
 
     function pagego(direction){
         if(direction === 1){
-            page = page-1;
+            page = parseInt(page)-1;
             
         }else{
-            page = page+1;
+            page = parseInt(page)+1;
         }
 
         loadblog();
