@@ -118,9 +118,13 @@
         'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
         },
         success: function(data){
-          var content =    `<article class="am-g blog-entry-article">
+            var content = '';
+            $(data).each(function(k,v){
+
+
+                        content +=    `<article class="am-g blog-entry-article">
             <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
-                <img src="{{config('app.url')}}/6" alt="" class="am-u-sm-12">
+                <img src="{{config('app.url')}}/`+v.cover+`" alt="" class="am-u-sm-12">
             </div>
             <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
                 <span><a href="" class="blog-color">article &nbsp;</a></span>
@@ -132,6 +136,15 @@
                 <p><a href="" class="blog-continue">continue reading</a></p>
             </div>
         </article>`;
+
+
+
+
+
+
+
+            });
+      
 
             $("#blog_box").html(content);
         },
