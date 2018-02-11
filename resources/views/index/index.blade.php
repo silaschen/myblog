@@ -125,7 +125,7 @@
             <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
                 <span><a href="" class="blog-color">article &nbsp;</a></span>
                 <span> @4w &nbsp;</span>
-                <span>{{date('Y-m-d',$vo->updatetime)}}</span>
+                <span>{{date('Y-m-d',122222223131)}}</span>
                 <h1><a href="{{url('read')}}/6">asdasd</a></h1>
                 <p>我们一直在坚持着，不是为了改变这个世界，而是希望不被这个世界所改变。
                 </p>
