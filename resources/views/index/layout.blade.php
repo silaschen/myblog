@@ -84,11 +84,5 @@
 
 <script src="{{config('app.url')}}/assets/js/amazeui.min.js"></script>
 
-<script type="text/javascript">
-  
-  function search(){
-    loadblog();
-  }
-</script>
 </body>
 </html>

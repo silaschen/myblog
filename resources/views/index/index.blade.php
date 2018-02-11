@@ -111,6 +111,12 @@
         loadblog();
     }
 
+
+     function search(){
+    loadblog();
+  }
+
+  
     function pagego(direction){
         if(direction === 1){
             page = parseInt(page)-1;
