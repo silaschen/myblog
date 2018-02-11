@@ -47,7 +47,7 @@
 
       <div class="am-form-group input-group">
         <input type="text" name="search_text" class="am-form-field am-input-sm" placeholder="search what u want...">
-        <label class="input-group-addon"  onclick="search()"><i class="glyphicon glyphicon-search"></i></label>
+        <label class="input-group-addon"  onclick="loadblog()"><i class="glyphicon glyphicon-search"></i></label>
       </div>
 
   </div>
@@ -83,11 +83,5 @@
 
 
 <script src="{{config('app.url')}}/assets/js/amazeui.min.js"></script>
-<script type="text/javascript">
-      function search(){
-    loadblog();
-  }
-
-</script>
 </body>
 </html>
