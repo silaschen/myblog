@@ -68,7 +68,7 @@
         
         <ul class="am-pagination">
 
-  <li class="am-pagination-prev"><a href="pagego(1)">&laquo; Prev</a></li>
+  <li class="am-pagination-prev"><a href="javascript::pagego(1)">&laquo; Prev</a></li>
 
   <li class="am-pagination-next"><a href="javascript:pagego(2)">Next &raquo;</a></li>
 </ul>
