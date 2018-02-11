@@ -64,24 +64,7 @@
 <div class="am-g am-g-fixed blog-fixed">
     <div class="am-u-md-8 am-u-sm-12">
 
-    @foreach($list as $vo)
-
-        <article class="am-g blog-entry-article">
-            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
-                <img src="{{config('app.url')}}/{{$vo->cover}}" alt="" class="am-u-sm-12">
-            </div>
-            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
-                <span><a href="" class="blog-color">article &nbsp;</a></span>
-                <span> @4w &nbsp;</span>
-                <span>{{date('Y-m-d',$vo->updatetime)}}</span>
-                <h1><a href="{{url('read')}}/{{$vo->id}}">{{$vo->title}}</a></h1>
-                <p>我们一直在坚持着，不是为了改变这个世界，而是希望不被这个世界所改变。
-                </p>
-                <p><a href="" class="blog-continue">continue reading</a></p>
-            </div>
-        </article>
-
-       @endforeach
+        <div id="blog_box"></div>
         
         <ul class="am-pagination">
         @if($nowpage > 1)
@@ -135,7 +118,22 @@
         'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
         },
         success: function(data){
-          console.log(data);
+          var content =    `<article class="am-g blog-entry-article">
+            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+                <img src="{{config('app.url')}}/6" alt="" class="am-u-sm-12">
+            </div>
+            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+                <span><a href="" class="blog-color">article &nbsp;</a></span>
+                <span> @4w &nbsp;</span>
+                <span>{{date('Y-m-d',$vo->updatetime)}}</span>
+                <h1><a href="{{url('read')}}/6">asdasd</a></h1>
+                <p>我们一直在坚持着，不是为了改变这个世界，而是希望不被这个世界所改变。
+                </p>
+                <p><a href="" class="blog-continue">continue reading</a></p>
+            </div>
+        </article>`;
+
+            $("#blog_box").html(content);
         },
         error: function(xhr, type){
          alert('Ajax error!')
