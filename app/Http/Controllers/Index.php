@@ -21,7 +21,7 @@ class Index extends Controller{
 		$page = filter_input(INPUT_POST, 'page') ? filter_input(INPUT_POST, 'page') :1;
 		$start = ($page-1)*PAGE_SIZE;
 
-		$sql = "select id,title,updatetime,cover from blog where title like '%s' ";
+		$sql = "select id,title,updatetime,cover,content from blog where title like '%s' ";
 		if($tag){
 		
 			$sql .= "and id in %s ";
@@ -33,9 +33,10 @@ class Index extends Controller{
 		}
 		
 		$list = DB::select($sql);
-		array_map(function($ret){
-			return $ret['desc'] = substr($ret['content'], 0,20);
-		}, $list);
+		foreach($list as $k=> $ret){
+			$list[$k]->desc = mb_substr($list[$k]->content,0,40,'utf8');
+			unset($list[$k]->content);
+		}
 		exit(json_encode(['blog'=>$list,'page'=>$page]));
 
 	}
