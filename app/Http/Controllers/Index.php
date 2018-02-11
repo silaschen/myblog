@@ -26,19 +26,18 @@ class Index extends Controller{
 		if($tag){
 		
 			$sql .= "and id in %s ";
-			$param = ["%".$search."%","(select blogid from tag_blog where tag='$tag')",$start,PAGE_SIZE];
+			$sql .= " order by updatetime desc limit %d,%d";
+			
+			$sql = sprintf($sql,"%".$search."%","(select blogid from tag_blog where tag='$tag')",$start,PAGE_SIZE);
 		}else{
-
-			$param = ["%".$search."%",$start,PAGE_SIZE];
+			$sql .= " order by updatetime desc limit %d,%d";
+			$sql = sprintf($sql,"%".$search."%",$start,PAGE_SIZE);
+			
 
 		}
-		$sql .= " order by updatetime desc limit %d,%d";
-
 		
-		$sql = sprintf($sql,$param);
-		var_dump($sql);
 		$list = DB::select($sql);
-		var_dump($list);
+		exit(json_encode($list));
 
 	}
 
