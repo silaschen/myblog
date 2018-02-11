@@ -89,7 +89,28 @@ class Index extends Controller{
 		
 		}
 
+	//http curl
+	public function Curl_Http($url,$header=array(),$data=null){
+		$handler = curl_init();
+		curl_setopt($handler,CURLOPT_URL,$url);
+		curl_setopt($handler,CURLOPT_RETURNTRANSFER,true);
+		if($method === 'post'){
+			curl_setopt($handler,CURLOPT_POST,true);
+			curl_setopt($handler,CURLOPT_POSTFIELDS,json_encode($data));
+		}
+		
+		if($header){
+			 $header = array_merge(array('Content-type: application/json', 'Accept: application/json'),$header);
 
+
+		}
+
+		curl_setopt($handler,CURLOPT_HTTPHEADER,$header);
+
+		$res = curl_exec($handler);
+
+		return json_decode($res,true);
+	}
 
 
 
