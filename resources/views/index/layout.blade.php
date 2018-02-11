@@ -46,7 +46,7 @@
     </ul>
 
       <div class="am-form-group input-group">
-        <input type="text" name="search_text" class="am-form-field am-input-sm form-control" placeholder="search what u want...">
+        <input type="text" name="search_text" class="am-form-field am-input-sm" placeholder="search what u want...">
         <label class="input-group-addon"  onclick="search()"><i class="glyphicon glyphicon-search"></i></label>
       </div>
 

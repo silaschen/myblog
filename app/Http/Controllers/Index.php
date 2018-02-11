@@ -34,7 +34,7 @@ class Index extends Controller{
 		
 		$list = DB::select($sql);
 		foreach($list as $k=> $ret){
-			$list[$k]->desc = mb_substr($list[$k]->content,0,40,'utf8');
+			$list[$k]->desc = mb_substr($list[$k]->content,0,80,'utf8');
 			unset($list[$k]->content);
 		}
 		exit(json_encode(['blog'=>$list,'page'=>$page]));
