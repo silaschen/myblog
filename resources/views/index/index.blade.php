@@ -68,9 +68,9 @@
         
         <ul class="am-pagination">
         @if($nowpage > 1)
-  <li class="am-pagination-prev"><a href="{{url('list')}}">&laquo; Prev</a></li>
+  <li class="am-pagination-prev"><a href="pagego(1)">&laquo; Prev</a></li>
   @endif
-  <li class="am-pagination-next"><a href="{{url('list')}}/{{$nowpage+1}}">Next &raquo;</a></li>
+  <li class="am-pagination-next"><a href="javascript:pagego(2)">Next &raquo;</a></li>
 </ul>
     </div>
 
@@ -106,24 +106,40 @@
 
 <script type="text/javascript">
     var tag = null;
+    var page = 1;
+    var search = null;
     function settag(id){
         tag=id;
         loadblog();
     }
+
+    function pagego(direction){
+        if(direction === 1){
+            page = page-1;
+            
+        }else{
+            page = page+1;
+        }
+
+        loadblog();
+
+
+    }
     function loadblog(){
 
 
-         $.ajax({
+        $.ajax({
         type: 'POST',
         url: "{{url('blog')}}",
-        data: {'tag':tag,'search':''},
+        data: {'tag':tag,'search':search,'page':page},
         dataType: 'json',
         headers: {
         'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
         },
         success: function(data){
             var content = '';
-            $(data).each(function(k,v){
+            page = data.page;
+            $(data.blog).each(function(k,v){
 
 
         content +=   `<article class="am-g blog-entry-article">

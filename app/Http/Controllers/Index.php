@@ -2,7 +2,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-define('PAGE_SIZE', 6);
+define('PAGE_SIZE', 2);
 class Index extends Controller{
 	
 
@@ -37,7 +37,7 @@ class Index extends Controller{
 		}
 		
 		$list = DB::select($sql);
-		exit(json_encode($list));
+		exit(json_encode(['blog'=>$list,'page'=>$page]));
 
 	}
 
