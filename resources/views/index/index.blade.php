@@ -1,7 +1,7 @@
 @extends('index.layout')
 <!-- banner start -->
 @section('content')
-<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
 <!-- <div class="am-g am-g-fixed blog-fixed am-u-sm-centered blog-article-margin">
     <div data-am-widget="slider" class="am-slider am-slider-b1" data-am-slider='{&quot;controlNav&quot;:false}' >
     <ul class="am-slides">
@@ -107,13 +107,12 @@
     var tag = null;
     var page = 1;
     var search = $("input[name='search_text']").val();
+
+
     function settag(id){
         tag=id;
         loadblog();
     }
-
-
- 
 
     function pagego(direction){
         if(direction === 1){
@@ -122,14 +121,12 @@
         }else{
             page = parseInt(page)+1;
         }
-
         loadblog();
-
-
     }
+
+
     function loadblog(){
-
-
+        
         $.ajax({
         type: 'POST',
         url: "{{url('blog')}}",

@@ -45,9 +45,9 @@
       <li><a href="lw-timeline.html">about me</a></li>
     </ul>
 
-      <div class="am-form-group input-group">
+      <div class="am-form-group">
         <input type="text" name="search_text" class="am-form-field am-input-sm" placeholder="search what u want...">
-        <label class="input-group-addon"  onclick="loadblog()"><i class="glyphicon glyphicon-search"></i></label>
+  
       </div>
 
   </div>
