@@ -2,7 +2,7 @@
 namespace App\Http\Controllers;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-define('PAGE_SIZE', 2);
+define('PAGE_SIZE', 5);
 class Index extends Controller{
 	
 
