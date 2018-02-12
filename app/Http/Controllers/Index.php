@@ -104,7 +104,19 @@ class Index extends Controller{
 			move_uploaded_file($file['tmp_name'],$filename);
 			exit(json_encode(['file'=>$filename,'ret'=>1]));
 		
-		}
+	}
+
+
+		#kindeditor上传#
+	public function upload(Request $request){
+			var_dump($_FILES);exit;
+			$file = $_FILES['files'];
+			$img = $request->file('files');
+			$filename = 'upload/img/'.'aaa'.time().'.jpg';
+			move_uploaded_file($file['tmp_name'],$filename);
+			exit(json_encode(['file'=>$filename,'ret'=>1]));
+		
+	}
 
 	//http curl
 	public function Curl_Http($url,$header=array(),$data=null){
