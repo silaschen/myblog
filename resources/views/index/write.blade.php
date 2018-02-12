@@ -52,8 +52,6 @@
 KindEditor.ready(function(K) {
     window.editor = K.create('#editor_id',{
       uploadJson:"upload",
-      extraFileUploadParams: {           'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-        }
     });
     editor.html($('.temp').html());
 });
