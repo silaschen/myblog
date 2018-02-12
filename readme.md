@@ -6,3 +6,5 @@ this is very easy to make a blog site using laravel.this contains three tables,s
 u can fork and we do it together to make it better.
 
 ##thx much. 
+##contact me
+18811174687
