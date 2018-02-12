@@ -51,7 +51,7 @@
 <script type="text/javascript">
 KindEditor.ready(function(K) {
     window.editor = K.create('#editor_id',{
-      uploadJson:"{{url('uploadImg')}"
+      uploadJson:"{{url('uploadImg')}}"
     });
     editor.html($('.temp').html());
 });
