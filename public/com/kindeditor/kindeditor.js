@@ -1,12 +1,3 @@
-/*******************************************************************************
-* KindEditor - WYSIWYG HTML Editor for Internet
-* Copyright (C) 2006-2013 kindsoft.net
-*
-* @author Roddy <luolonghao@gmail.com>
-* @website http://www.kindsoft.net/
-* @licence http://www.kindsoft.net/license.php
-* @version 4.1.10 (2013-11-23)
-*******************************************************************************/
 (function (window, undefined) {
 	if (window.KindEditor) {
 		return;
