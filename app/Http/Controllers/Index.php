@@ -108,7 +108,7 @@ class Index extends Controller{
 
 
 		#kindeditor上传#
-	public function upload(){
+	public function upload(Request $request){
 			var_dump($_FILES);exit;
 	
 		
