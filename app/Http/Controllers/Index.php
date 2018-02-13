@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 define('PAGE_SIZE', 5);
 class Index extends Controller{
-	
+	const UPLOAD_PATH = 'upload/ck';
 
 	public function index(){
 
@@ -108,8 +108,12 @@ class Index extends Controller{
 
 
 		#kindeditor上传#
-	public function upload(Request $request){
-			var_dump($_FILES);exit;
+	public function uploadeditor(){
+
+			$file = $_FILES['imgFile'];
+			$target = self::UPLOAD_PATH."/".md5(time()).'.jpg';
+			move_uploaded_file($file['tmp_name'], $target);
+			exit(json_encode(['error'=>0,'url'=>config('url').'/'.$target]));
 	
 		
 	}

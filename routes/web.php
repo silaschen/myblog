@@ -17,5 +17,4 @@ Route::get('read/{id}',"Index@read");
 Route::any('write',"Index@write");
 Route::post('uploadImg',"Index@uploadImg");
 Route::post('blog','Index@blog');
-Route::any('uploadEd','Index@upload');
-Route::any('upload/',"Index@upload");
+Route::any('uploadeditor','Index@uploadeditor');
