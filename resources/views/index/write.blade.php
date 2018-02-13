@@ -60,7 +60,7 @@
 <div class="temp hide"></div>
 <script charset="utf-8" src="{{config('url')}}/com/kindeditor/kindeditor.js"></script>
 <script charset="utf-8" src="{{config('url')}}/com/kindeditor/lang/zh_CN.js"></script>
-<script type="text/javascript">\
+<script type="text/javascript">
 
 CKEDITOR.replace( 'editor1' );
 
