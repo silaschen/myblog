@@ -99,7 +99,7 @@ class Index extends Controller{
 			return view('index/edit',['blog'=>$essay]);
 		}else{
 			$blog = $_POST;
-			DB::table('blog')->update($blog);
+			DB::table('blog')->where(['id'=>$blog['id']])->update(['title'=>$blog['title'],'cover'=>$blog['cover'],'content'=>$blog['content']]);
 			exit(json_encode(['code'=>1]));
 		}
 
