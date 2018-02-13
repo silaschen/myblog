@@ -45,8 +45,9 @@ class Index extends Controller{
 	//READ BLOG
 	public function read($id){
 		$blog = DB::select("select * from blog where id=?",[$id])[0];
+		$comment = DB::select(sprintf("select * from blog_comment where blogid=%d order by id desc",$id));
 		DB::update("update blog set view=? where id=?",[$blog->view+1,$id]);
-		return view('index/read',['blog'=>$blog]);
+		return view('index/read',['blog'=>$blog,'comment'=>$comment]);
 
 	}
 
@@ -128,6 +129,20 @@ class Index extends Controller{
 			exit(json_encode(['error'=>0,'url'=>config('url').'/'.$target]));
 	
 		
+	}
+
+
+	//comment
+	public function comment($id){
+
+		$comment = filter_input(INPUT_POST, 'content');
+		if(!empty($comment)){
+			$sql = sprintf("insert into blog_comment (blogid,content,time) values (%d,'%s','%s')",$id,$comment,time());
+			DB::insert($sql);
+			exit(json_encode(['code'=>1,'time'=>date("M d,Y H:i",time()),'content'=>$comment]));
+		}
+
+
 	}
 
 	//http curl

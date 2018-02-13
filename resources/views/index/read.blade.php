@@ -1,5 +1,15 @@
 @extends('index.layout')
 @section('content')
+<style type="text/css">
+  .well{background: #FFF;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,.05);
+    border-radius: 8px;
+    padding: 32px;
+    width: inherit;
+    position: relative;
+    cursor: pointer;
+    margin-bottom: 12px;}
+</style>
 <!-- content srart -->
 <div class="am-g am-g-fixed blog-fixed blog-content">
     <div class="am-u-sm-12">
@@ -39,12 +49,9 @@
           </div>
         </div>
         <hr>
-        <ul class="am-pagination blog-article-margin">
-          <li class="am-pagination-prev"><a href="#" class="">next</a></li>
-          <li class="am-pagination-next"><a href="">prev</a></li>
-        </ul>
+  
         
-        <hr>
+
 
         <form class="am-form am-g">
             <h3 class="blog-comment">评论</h3>
@@ -55,13 +62,63 @@
               <textarea class="" rows="5" placeholder="一字千金"></textarea>
             </div>
         
-            <p><button type="submit" class="am-btn am-btn-default">发表评论</button></p>
+            <p><button type="button" class="am-btn am-btn-default" onclick="comment()">发表评论</button></p>
           </fieldset>
+
+
+  
+
+          <div id="commentbox">
+              
+                    @foreach($comment as $comm)
+              <div class="well"><p>{{$comm->content}}</p><br><span>{{date("M d,Y H:i",$comm->time)}}</span></div>
+                    @endforeach
+
+          </div>
+            
+
+            
+
+    
         </form>
 
-        <hr>
+    
     </div>
 </div>
+
+<script type="text/javascript">
+  
+  function comment(){
+    var comment = $("textarea").val();
+    if(comment === ''){
+      alert('评论内容不能为空！苍井空！');
+      return false;
+    }
+
+    $.ajax({
+
+      url:"{{url('comment')}}/{{$blog->id}}",
+      type:'POST',
+      data:{'content':comment},
+      dataType: 'json',
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+      },
+      success:function(ret){
+        var newcomm = `<div class="well"><p>`+ret.content+`</p><br><span>`+ret.time+`</span></div>`;
+
+        $("#commentbox").prepend(newcomm);
+
+      }
+
+
+    });
+
+
+  }
+
+
+</script>
 <!-- content end -->
 @endsection
 
