@@ -1,6 +1,7 @@
 @extends('index.layout')
 @section('content')
   <link rel="stylesheet" href="{{config('url')}}/com/jQuery-File-Upload-9.9.3/css/jquery.fileupload.css">
+  <script src="//cdn.ckeditor.com/4.8.0/standard/ckeditor.js"></script>
   <div class="box box-solid">
  <link href="https://cdn.bootcss.com/bootstrap/3.2.0/css/bootstrap.css" rel="stylesheet">
     <div class="box-header with-border">
@@ -27,11 +28,22 @@
                     </div>
                 <input class='hide' name='cover' id='cover' value="">
             </div>
+
+
             <div class='form-group'>
               <label>内容：</label>
                 <textarea id="editor_id" name="content" style="width:100%;min-height:260px;"></textarea>
             </div>
 
+
+
+            <div class="form-group">
+                <label>Content</label>
+                <textarea name="editor1" id="editor1" rows="5" cols="80">
+                This is my textarea to be replaced with CKEditor.
+                </textarea>
+
+            </div>
 
             <div class="form-group">
               <label>tag(请用空格 隔开)</label>
@@ -48,7 +60,11 @@
 <div class="temp hide"></div>
 <script charset="utf-8" src="{{config('url')}}/com/kindeditor/kindeditor.js"></script>
 <script charset="utf-8" src="{{config('url')}}/com/kindeditor/lang/zh_CN.js"></script>
-<script type="text/javascript">
+<script type="text/javascript">\
+
+CKEDITOR.replace( 'editor1' );
+
+
 KindEditor.ready(function(K) {
     window.editor = K.create('#editor_id',{
       uploadJson:"{{url('upload')}}",
