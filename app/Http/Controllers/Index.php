@@ -64,8 +64,6 @@ class Index extends Controller{
 			$blog['cover'] = $data['cover'];
 			$blog['content']= $data['content'];
 			$tag = explode(" ", $data['tag']);
-			
-
 			$sql1 = DB::table('blog')->insertGetId($blog);
 			if($tag){
 
@@ -86,14 +84,28 @@ class Index extends Controller{
 
 
 			}
-			exit(json_encode(['s'=>1]));
+			exit(json_encode(['code'=>1,'id'=>$sql1]));
 		}
 
 
 	}
 
 
+	public function edit($id){
 
+		$method = filter_input(INPUT_SERVER, 'REQUEST_METHOD');
+		if($method === 'GET'){
+			$essay = DB::table('blog')->find($id);
+			return view('index/edit',['blog'=>$essay]);
+		}else{
+			$blog = $_POST;
+			DB::table('blog')->update($blog);
+			exit(json_encode(['code'=>1]));
+		}
+
+
+
+	}
 
 		#上传#
 	public function uploadImg(Request $request){

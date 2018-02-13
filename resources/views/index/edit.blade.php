@@ -6,26 +6,24 @@
 
     <div class="container">
          <form method="POST" id='form'>
-          <input type="hidden" name="id" value="{{$blog->id}}">
+   
             <div class='form-group'>
               <label>Titile：</label>
-              <input type='text' name='title' class='form-control'>
+              <input type='text' name='title' class='form-control' value="{{$blog->title}}">
             </div>
-
-
             <div class='form-group'>
               <label>cover blog：</label>
                 <a href="javascript:$('#cover').val('');$('.showcover').html('');" onclick="return confirm('确定清除封面？');" class='pull-right'>清除封面</a> <br>
-                  <button type='button' class='btn btn-success btn-sm fileinput-button'><i class="glyphicon glyphicon-picture"></i> <small>推荐尺寸 400*300 点击上传</small><input  id="uploadcover" type="file" name="files" accept="image/*" ></button>
+                  <button type='button' class='btn btn-success btn-sm fileinput-button'><i class="glyphicon glyphicon-picture"></i> <small> blog cover Upload</small><input  id="uploadcover" type="file" name="files" accept="image/*" ></button>
                     <div id="progress" class="progress">
                         <div class="progress-bar progress-bar-success"></div>
                     </div>
                     <div id="files" class="files">
                     </div>
                     <div class='showcover'>
-                          <img src="">
+                          <img src="{{config('url')}}/{{$blog->cover}}">
                     </div>
-                <input class='hide' name='cover' id='cover' value="">
+                <input class='hide' name='cover' id='cover' value="{{$blog->cover}}">
             </div>
 
 
@@ -33,26 +31,17 @@
               <label>content of blog：</label>
                 <textarea id="editor_id" name="content" style="width:100%;min-height:460px;"></textarea>
             </div>
-
-
-            <div class="form-group">
-              <label>tag(请用空格 隔开)</label>
-              <input type="text" name="tag" class="form-control">
-            </div>
-          
-      
          </form>
-
              <div class="form-group">
                 <button type="button" style="height: 50px;" onclick="saveart();" class="btn btn-success btn-block saveart">确定</button>
             </div> 
 
 
+
     </div><!-- /.box-body -->
 
   </div>
-
-<div class="temp hide"></div>
+<div class="temp hide">{!!$blog->content!!}</div>
 <script charset="utf-8" src="{{config('url')}}/com/kindeditor/kindeditor.js"></script>
 <script charset="utf-8" src="{{config('url')}}/com/kindeditor/lang/zh_CN.js"></script>
 <script type="text/javascript">
@@ -63,20 +52,21 @@ KindEditor.ready(function(K) {
     editor.html($('.temp').html());
 });
 
-
 function saveart(){
   $("#editor_id").val(editor.html());
     $(".saveart").addClass('disabled');
      $.ajax({
         type: 'POST',
-        url: "{{url('write')}}",
+        url: "{{url('edit')}}/{{$blog->id}}",
         data: $("#form").serialize(),
         dataType: 'json',
         headers: {
         'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
         },
         success: function(data){
-             location.href = "{{url('read')}}/"+data.id;
+          if(data.code === 1){
+            location.href = "{{url('read')}}/{{$blog->id}}";
+          }
         },
         error: function(xhr, type){
         alert('Ajax error!')
