@@ -6,7 +6,6 @@
 
     <div class="container">
          <form method="POST" id='form'>
-          <input type="hidden" name="id" value="{{$blog->id}}">
             <div class='form-group'>
               <label>Titile：</label>
               <input type='text' name='title' class='form-control'>
