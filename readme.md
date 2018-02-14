@@ -11,3 +11,4 @@ u can fork and we do it together to make it better.
 hello,friend.I wanna fuck
 tttt.
 I wanna kiss you
+from ubuntu
