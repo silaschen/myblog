@@ -3,11 +3,4 @@ this is chensw's blog.U can get more about it via visiting the url (http://hotel
 
 ##made by laravel
 this is very easy to make a blog site using laravel.this contains three tables,such as blog,tag,tag_relation.
-u can fork and we do it together to make it better.
-
-##thx much. 
-##contact me
-18811174687
-hello,friend.I wanna fuck
-tttt.
-from dev
+u can fork and we do it together to make 
