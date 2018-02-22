@@ -1,0 +1,36 @@
+  1. 依次运行以下命令
+　　yum install ImageMagick
+　　yum install ImageMagick-devel
+
+
+　　yum install php-pear 
+//php版本 > 7
+$ wget http://pear.php.net/go-pear.phar
+$ php go-pear.phar
+
+//php版本 < 7
+$ yum install php-pear
+//否则会报错PHP Parse error:  syntax error, unexpected //'new' (T_NEW) in /usr/share/pear/
+
+
+
+　　安装php-pear是为了使用pecl 中的 phpize 
+　　yum -y install php-devel
+
+/报错如下
+//Warning: Invalid argument supplied for foreach() in //Command.php on line 249
+
+vi `which pecl`
+
+//找到最后一行
+exec $PHP -C -n -q $INCARG -d date.timezone=UTC -d output_buffering=1 -d variables_order=EGPCS -d safe_mode=0 -d register_argc_argv="On" $INCDIR/peclcmd.php "$@"
+
+　　2. 安装C编译器
+　　yum install gcc
+　　如果装不了gcc就用这个命令：
+　　yum install gcc gcc-c++ autoconf automake
+　　3. 安装imagick
+　　pecl install imagick
+　　4. 加载imagick到php
+　　在/etc/php.ini 加上extension=imagick.so
+　    5. 重启service httpd restart
