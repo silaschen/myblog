@@ -150,7 +150,7 @@
             <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
                 <span><a href="" class="blog-color">article &nbsp;</a></span>
                 <span> @4w &nbsp;</span>
-                <span>{{date('Y-m-d',`+v.updatetime+`)}}</span>
+                <span>`+v.updatetime+`</span>
                 <h1><a href="{{url('read')}}/`+v.id+`">`+v.title+`</a></h1>
                 <p>`+v.desc+`
                 </p>

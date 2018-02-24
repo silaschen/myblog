@@ -40,13 +40,14 @@
   <div class="am-collapse am-topbar-collapse" id="blog-collapse">
     <ul class="am-nav am-nav-pills am-topbar-nav">
       <li class="am-active"><a href="{{url('/')}}">Home</a></li>
-      <li><a href="lw-article.html">blog</a></li>
-      <li><a href="lw-img.html">album</a></li>
+    <!--   <li><a href="lw-article.html">blog</a></li>
+      <li><a href="lw-img.html">album</a></li> -->
       <li><a href="{{url('about')}}">about me</a></li>
     </ul>
     <form class="am-topbar-form am-topbar-right am-form-inline" role="search">
       <div class="am-form-group">
-        <input type="text" class="am-form-field am-input-sm" placeholder="搜索">
+        <input type="text" class="am-form-field am-input-sm" name="search" placeholder="搜索">
+        <span onclick="searchBlog()" style="display: inline-block;background: #239cd8;height: 2.5rem;margin-left: -5px;cursor: pointer;color: azure;padding:0 5px;">搜索</span>
       </div>
     </form>
   </div>
@@ -82,5 +83,12 @@
 
 
 <script src="{{config('app.url')}}/assets/js/amazeui.min.js"></script>
+
+<script type="text/javascript">
+  function searchBlog(){
+    search = $("input[name='search']").val();
+    loadblog();
+  }
+</script>
 </body>
 </html>
