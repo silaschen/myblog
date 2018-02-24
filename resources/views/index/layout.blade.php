@@ -39,7 +39,7 @@
 
   <div class="am-collapse am-topbar-collapse" id="blog-collapse">
     <ul class="am-nav am-nav-pills am-topbar-nav">
-      <li class="am-active"><a href="{{url('index')}}">Home</a></li>
+      <li class="am-active"><a href="{{url('/')}}">Home</a></li>
       <li><a href="lw-article.html">blog</a></li>
       <li><a href="lw-img.html">album</a></li>
       <li><a href="{{url('about')}}">about me</a></li>

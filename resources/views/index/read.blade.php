@@ -12,10 +12,10 @@
 </style>
 <!-- content srart -->
 <div class="am-g am-g-fixed blog-fixed blog-content">
-    <div class="am-u-sm-12">
+    <div class="am-u-sm-12 readbox">
       <article class="am-article blog-article-p">
         <div class="am-article-hd">
-          <h1 class="am-article-title blog-text-center">article</h1>
+          <h1 class="am-article-title blog-text-center">{{$blog->title}}</h1>
           <p class="am-article-meta blog-text-center">
               <span><a href="#" class="blog-color">article &nbsp;</a></span>-
               <span><a href="#">@4w&nbsp;</a></span>-
@@ -30,7 +30,12 @@
         
         <div class="am-g blog-article-widget blog-article-margin">
           <div class="am-u-lg-4 am-u-md-5 am-u-sm-7 am-u-sm-centered blog-text-center">
-            <span class="am-icon-tags"> &nbsp;</span><a href="#">标签</a> , <a href="#">TAG</a> , <a href="#">啦啦</a>
+            <span class="am-icon-tags"> &nbsp;</span>
+
+            @foreach($tags as $tag)
+            <a href="javascript:setTag({{$tag->id}})">{{$tag->name}}</a>,
+
+            @endforeach
             <hr>
             <a href=""><span class="am-icon-qq am-icon-fw am-primary blog-icon"></span></a>
             <a href=""><span class="am-icon-wechat am-icon-fw blog-icon"></span></a>
@@ -110,14 +115,73 @@
         $("#commentbox").prepend(newcomm);
 
       }
-
-
     });
-
-
   }
+var tag = null;
+search = null;
+page=1;
+function setTag(id){
+tag = id;
+$(".readbox").empty();
+loadblog();
+}
+
+   function loadblog(){
+        
+        $.ajax({
+        type: 'POST',
+        url: "{{url('blog')}}",
+        data: {'tag':tag,'search':search,'page':page},
+        dataType: 'json',
+        headers: {
+        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+        },
+        success: function(data){
+            var content = '';
+            page = data.page;
+            $(data.blog).each(function(k,v){
 
 
+        content +=   `<article class="am-g blog-entry-article">
+            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+                <img src="{{config('app.url')}}/`+v.cover+`" alt="" class="am-u-sm-12">
+            </div>
+            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+                <span><a href="" class="blog-color">article &nbsp;</a></span>
+                <span> @4w &nbsp;</span>
+                <span>{{date('Y-m-d',`+v.updatetime+`)}}</span>
+                <h1><a href="{{url('read')}}/`+v.id+`">`+v.title+`</a></h1>
+                <p>`+v.desc+`
+                </p>
+                <p><a href="" class="blog-continue">continue reading</a></p>
+            </div>
+        </article>`;
+            });
+            content += ` <ul class="am-pagination">
+
+  <li class="am-pagination-prev"><a href="javascript:pagego(1)">&laquo; Prev</a></li>
+
+  <li class="am-pagination-next"><a href="javascript:pagego(2)">Next &raquo;</a></li>
+</ul>`;
+      
+
+            $(".readbox").html(content);
+        },
+        error: function(xhr, type){
+         alert('Ajax error!')
+        }
+        });
+
+    }
+ function pagego(direction){
+        if(direction === 1){
+            page = parseInt(page)-1;
+            
+        }else{
+            page = parseInt(page)+1;
+        }
+        loadblog();
+    }
 </script>
 <!-- content end -->
 @endsection

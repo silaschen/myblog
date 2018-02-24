@@ -46,8 +46,9 @@ class Index extends Controller{
 	public function read($id){
 		$blog = DB::select("select * from blog where id=?",[$id])[0];
 		$comment = DB::select(sprintf("select * from blog_comment where blogid=%d order by id desc",$id));
+		$tags = DB::select(sprintf("SELECT * FROM tag where id in (select tagid from tag_blog where blogid=%d)",$id));
 		DB::update("update blog set view=? where id=?",[$blog->view+1,$id]);
-		return view('index/read',['blog'=>$blog,'comment'=>$comment]);
+		return view('index/read',['blog'=>$blog,'comment'=>$comment,'tags'=>$tags]);
 
 	}
 
@@ -134,15 +135,17 @@ class Index extends Controller{
 
 	//comment
 	public function comment($id){
-
 		$comment = filter_input(INPUT_POST, 'content');
 		if(!empty($comment)){
 			$sql = sprintf("insert into blog_comment (blogid,content,time) values (%d,'%s','%s')",$id,$comment,time());
 			DB::insert($sql);
 			exit(json_encode(['code'=>1,'time'=>date("M d,Y H:i",time()),'content'=>$comment]));
 		}
+	}
 
-
+	//about me
+	public function about(){
+		return view('index/about');
 	}
 
 	//http curl
@@ -157,8 +160,6 @@ class Index extends Controller{
 		
 		if($header){
 			 $header = array_merge(array('Content-type: application/json', 'Accept: application/json'),$header);
-
-
 		}
 
 		curl_setopt($handler,CURLOPT_HTTPHEADER,$header);
