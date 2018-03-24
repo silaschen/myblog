@@ -34,7 +34,7 @@ class Index extends Controller{
 		
 		$list = DB::select($sql);
 		foreach($list as $k=> $ret){
-			$list[$k]->desc = mb_substr($list[$k]->content,0,80,'utf8');
+			$list[$k]->desc = mb_substr($list[$k]->content,0,50,'utf8');
 			$list[$k]->updatetime = date("Y-m-d",$list[$k]->updatetime);
 			unset($list[$k]->content);
 		}

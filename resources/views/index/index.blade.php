@@ -144,10 +144,10 @@
 
 
         content +=   `<article class="am-g blog-entry-article">
-            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-img">
+            <div class="am-u-lg-4 am-u-md-12 am-u-sm-12 blog-entry-img">
                 <img src="{{config('app.url')}}/`+v.cover+`" alt="" class="am-u-sm-12">
             </div>
-            <div class="am-u-lg-6 am-u-md-12 am-u-sm-12 blog-entry-text">
+            <div class="am-u-lg-8 am-u-md-12 am-u-sm-12 blog-entry-text">
                 <span><a href="" class="blog-color">article &nbsp;</a></span>
                 <span> @4w &nbsp;</span>
                 <span>`+v.updatetime+`</span>
