@@ -5,10 +5,10 @@ use Illuminate\Http\Request;
 define('PAGE_SIZE', 5);
 class Index extends Controller{
 	const UPLOAD_PATH = 'upload/ck';
-
+	private static $ranknum = 6;
 	public function index(){
 
-		$rank=DB::select("select * from blog order by view desc limit 3");
+		$rank=DB::select(sprintf("select * from blog order by view desc limit %d",self::$ranknum));
 		$tag = DB::select("select * from tag order by relation desc");
 		return view('index/index',['nowpage'=>1,'rank'=>$rank,'tag'=>$tag]);
 
