@@ -10,10 +10,37 @@ class Index extends Controller{
 
 		$rank=DB::select(sprintf("select * from blog order by view desc limit %d",self::$ranknum));
 		$tag = DB::select("select * from tag order by relation desc");
-		return view('index/index',['nowpage'=>1,'rank'=>$rank,'tag'=>$tag]);
+
+		//count view number
+		$redis = new \Redis();
+		$redis->connect('127.0.0.1','6379');
+		$redis->select(3);
+		$viewkey = self::getViewKey();
+		$number = $redis->get($viewkey);
+		$redis->set($viewkey,$number+1);
+		$joke=self::getJoke();
+//		print_r($joke);
+//	exit;	
+		return view('index/index',['nowpage'=>1,'rank'=>$rank,'tag'=>$tag,'joke'=>$joke]);
+
+	}
+	
+	static private function getJoke(){
+		
+		 $redis = new \Redis();
+                $redis->connect('127.0.0.1','6379');
+                $redis->select(3);
+	
+		return json_decode($redis->get('JOKE'),true);
+		
 
 	}
 
+	static private function getViewKey(){
+		
+		return sprintf("%s|%s",'VIEW_NUM','blog');
+
+	}
 	public function blog(){
 
 		$tag = filter_input(INPUT_POST, 'tag') ? filter_input(INPUT_POST, 'tag') : null;
@@ -148,6 +175,10 @@ class Index extends Controller{
 	public function about(){
 		return view('index/about');
 	}
+	
+	
+
+
 
 	//http curl
 	public function Curl_Http($url,$header=array(),$data=null){
@@ -172,7 +203,13 @@ class Index extends Controller{
 
 
 
+	public function album(){
+		
+		echo "almun ";
+	
 
+
+	}
 
 
 }

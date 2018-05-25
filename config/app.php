@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'http://lara.com'),
+    'url' => env('APP_URL', 'http://cube6.top'),
     'UPLOAD_PATH'=>'/var/www/larablog/public/upload',
     /*
     |--------------------------------------------------------------------------

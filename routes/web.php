@@ -1,6 +1,6 @@
 <?php
 
-/*jiaji
+/*
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
@@ -21,3 +21,4 @@ Route::any('uploadeditor','Index@uploadeditor');
 Route::any("edit/{id}","Index@edit");
 Route::post("comment/{id}","Index@comment");
 Route::get("/about","Index@about");
+Route::get("/album","Index@album");

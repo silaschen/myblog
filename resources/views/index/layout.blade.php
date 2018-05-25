@@ -48,7 +48,9 @@
       <div class="am-form-group">
         <input type="text" class="am-form-field am-input-sm" name="search" placeholder="搜索">
         <span onclick="searchBlog()" style="display: inline-block;background: #239cd8;height: 2.5rem;margin-left: -5px;cursor: pointer;color: azure;padding:0 5px;">搜索</span>
-      </div>
+	<span class="label label-success" style="padding:8px;"> <?php  $redis=new \Redis();$redis->connect('127.0.0.1','6379');$redis->select(3);$n = $redis->get('VIEW_NUM|blog');echo $n?>人来过这里</span>     
+
+ </div>
     </form>
   </div>
 </nav>
