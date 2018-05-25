@@ -21,7 +21,16 @@
   <meta name="msapplication-TileColor" content="#0e90d2">
   <link rel="stylesheet" href="{{config('app.url')}}/assets/css/amazeui.min.css">
   <link rel="stylesheet" href="{{config('app.url')}}/assets/css/app.css">
+
   <script src="{{config('app.url')}}/assets/js/jquery.min.js"></script>
+
+      <script src="{{config('app.url')}}/assets/album/js/jquery.poptrox.min.js"></script>
+      <script src="{{config('app.url')}}/assets/album/js/skel.min.js"></script>
+      <script src="{{config('app.url')}}/assets/album/js/util.js"></script>
+      <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+      <script src="{{config('app.url')}}/assets/album/js/main.js"></script>
+
+
 </head>
 
 <body id="blog">

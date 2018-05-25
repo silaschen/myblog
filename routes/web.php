@@ -22,3 +22,5 @@ Route::any("edit/{id}","Index@edit");
 Route::post("comment/{id}","Index@comment");
 Route::get("/about","Index@about");
 Route::get("/album","Index@album");
+Route::any('/uploadShare',"Index@uploadShare");
+Route::any("/uploadImgForShare",'Index@uploadImgForShare');

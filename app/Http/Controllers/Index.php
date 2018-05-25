@@ -149,6 +149,29 @@ class Index extends Controller{
 	}
 
 
+
+			#上传#
+	public function uploadImgForShare(Request $request){
+
+			$file = $_FILES['files'];
+			$img = $request->file('files');
+			$filename = 'upload/img/full/'.time().'.jpg';
+			move_uploaded_file($file['tmp_name'],$filename);
+			//剪切成缩略图
+
+			exit(json_encode(['file'=>$filename,'ret'=>1]));
+		
+	}
+
+
+	//上传图片，多张
+	public function uploadShare(){
+
+		return view('index/upload');
+	}
+
+
+
 		#kindeditor上传#
 	public function uploadeditor(){
 
@@ -203,9 +226,27 @@ class Index extends Controller{
 
 
 
+    //$filepath图片路径,$percent缩放百分比  
+			function imagepress($filepath,$percent='0.5'){  
+			// 图片类型  
+			header('Content-Type: image/jpeg');  
+			// 获得新的图片大小  
+			list($width, $height) = getimagesize($filepath);  
+			$new_width = $width * $percent;  
+			$new_height = $height * $percent;  
+			// 重新取样  
+			$image_p = imagecreatetruecolor($new_width, $new_height);  
+			$image = imagecreatefromjpeg($filepath);  
+			imagecopyresampled($image_p, $image, 0, 0, 0, 0, $new_width, $new_height, $width, $height);  
+			// 输出  
+			        imagejpeg($image,"aaa".$filepath); 
+			} 
+ 
+
+
 	public function album(){
-		
-		echo "almun ";
+			$this->imagepress("a.jpg",0.4);
+		// return view('index/album');
 	
 
 
