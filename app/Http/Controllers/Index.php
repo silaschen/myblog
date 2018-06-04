@@ -155,10 +155,10 @@ class Index extends Controller{
 
 			$file = $_FILES['files'];
 			$img = $request->file('files');
-			$filename = 'upload/img/full/'.time().'.jpg';
+			$filename = 'upload/img/full/'.md5(time().rand(1,1000)).'.jpg';
 			move_uploaded_file($file['tmp_name'],$filename);
 			//剪切成缩略图
-			$thupath = 'upload/img/thumb/'.md5(time()).'.jpg';
+			$thupath = 'upload/img/thumb/'.md5(time().rand(30,3000)).'.jpg';
 			$this->img_create_small($filename, 360,247, $thupath);
 			exit(json_encode(['file'=>$filename,'thumbpath'=>$thupath,'ret'=>1]));
 	}

@@ -11,7 +11,7 @@
             <div class='form-group'>
               <label>图片分享：</label>
                 <a href="javascript:$('#cover').val('');$('.showcover').html('');" onclick="return confirm('确定清除封面？');" class='pull-right'>清除封面</a> <br>
-                  <button type='button' class='btn btn-success btn-sm fileinput-button'><i class="glyphicon glyphicon-picture"></i><small>select files</small><input  id="uploadcover" type="file" name="files" multiple="multiple" accept="image/*" ></button>
+                  <button type='button' class='btn btn-success btn-sm fileinput-button'><i class="glyphicon glyphicon-picture"></i><small>select files</small><input  id="uploadcover" type="file" name="files" multiple accept="image/*" ></button>
                     <div id="progress" class="progress">
                         <div class="progress-bar progress-bar-success"></div>
                     </div>
