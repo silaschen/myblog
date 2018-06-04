@@ -133,8 +133,11 @@ class Index extends Controller{
 			exit(json_encode(['code'=>1]));
 		}
 
+	}
 
-
+	public function album(){
+		$list = Db::select(sprintf("select * from album order by id desc"));
+		return view('index/album',['list'=>$list]);
 	}
 
 		#上传#
@@ -208,9 +211,6 @@ class Index extends Controller{
 	}
 	
 	
-
-
-
 	//http curl
 	public function Curl_Http($url,$header=array(),$data=null){
 		$handler = curl_init();
@@ -232,18 +232,6 @@ class Index extends Controller{
 		return json_decode($res,true);
 	}
 
-
-
- 
-
-
-	public function album(){
-		
-		return view('index/album');
-	
-		// $this->img_create_small('D:/appbig.png',100,100,'D:/xsmall.jpp');
-
-	}
 
 
 	function img_create_small($big_img, $width=360, $height=247, $small_img) {//原始大图地址，缩略图宽度，高度，缩略图地址

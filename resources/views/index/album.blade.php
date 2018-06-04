@@ -6,12 +6,17 @@
 
 
 					<div id="main">
+
+						 @foreach($list as $v)
 						<article class="thumb">
-							<a href="{{config('url')}}/images/fulls/01.jpg" class="image"><img src="{{config('url')}}/images/thumbs/01.jpg" alt="" /></a>
+							<a href="{{config('url')}}/{{$v->path}}" class="image"><img src="{{config('url')}}/{{$v->thumb}}" alt="" /></a>
 							<h2>Magna feugiat lorem</h2>
 							<p>Nunc blandit nisi ligula magna sodales lectus elementum non. Integer id venenatis velit.</p>
 						</article>
-						<article class="thumb">
+						 @endforeach
+
+
+					<!-- 	<article class="thumb">
 							<a href="{{config('url')}}/images/fulls/02.jpg" class="image"><img src="{{config('url')}}/images/thumbs/02.jpg" alt="" /></a>
 							<h2>Nisl adipiscing</h2>
 							<p>Nunc blandit nisi ligula magna sodales lectus elementum non. Integer id venenatis velit.</p>
@@ -65,7 +70,7 @@
 							<a href="{{config('url')}}/images/fulls/12.jpg" class="image"><img src="{{config('url')}}/images/thumbs/12.jpg" alt="" /></a>
 							<h2>Vehicula id nulla dignissim</h2>
 							<p>Nunc blandit nisi ligula magna sodales lectus elementum non. Integer id venenatis velit.</p>
-						</article>
+						</article> -->
 					</div>
 			</div>
 
