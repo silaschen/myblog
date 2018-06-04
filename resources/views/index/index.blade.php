@@ -86,7 +86,7 @@
             <div class="am-u-sm-12 blog-clear-padding">
 
                
-            		{{$joke[rand(0,7)]}}
+            		{{$joke[rand(0,count($joke)-1)]}}
    
             </div>
         </div>
