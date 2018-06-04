@@ -11,21 +11,21 @@
             <div class='form-group'>
               <label>图片分享：</label>
                 <a href="javascript:$('#cover').val('');$('.showcover').html('');" onclick="return confirm('确定清除封面？');" class='pull-right'>清除封面</a> <br>
-                  <button type='button' class='btn btn-success btn-sm fileinput-button'><i class="glyphicon glyphicon-picture"></i> <small>推荐尺寸 400*300 点击上传</small><input  id="uploadcover" type="file" name="files" multiple="multiple" accept="image/*" ></button>
+                  <button type='button' class='btn btn-success btn-sm fileinput-button'><i class="glyphicon glyphicon-picture"></i><small>select files</small><input  id="uploadcover" type="file" name="files" multiple="multiple" accept="image/*" ></button>
                     <div id="progress" class="progress">
                         <div class="progress-bar progress-bar-success"></div>
                     </div>
                     <div id="files" class="files">
                     </div>
                     <div class='showcover'>
-                          <img src="">
+                          
                     </div>
-                <input class='hide' name='cover' id='cover' value="">
+                  
             </div>
 
 
              <div class="form-group">
-                <button type="button" style="height: 50px;" onclick="saveart();" class="btn btn-success btn-block saveart">确定</button>
+                <button type="button" style="height: 50px;" onclick="savephoto();" class="btn btn-success btn-block savephoto">确定</button>
             </div> 
 
 
@@ -48,20 +48,22 @@ $(function(){
         url: "{{url('uploadImgForShare')}}",
         dataType: 'JSON',
         headers: {
-'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-},
+      'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+      },
         acceptFileTypes: 'jpg,png,gif,jpeg,bmp',
-      maxFileSize: 8000000, // 800kb
-      disableImageResize: /Android(?!.*Chrome)|Opera/.test(window.navigator && navigator.userAgent),
-        imageMaxWidth: 1920, //自动裁剪保持该宽度
-        // imageMaxHeight: 300,
-        // imageCrop: true,
+
         done: function (e, data) {
           console.log(data);
           if(data.result.ret == 1){
 
-              $("input[name='cover']").val(data.result.file);
-              $(".showcover").html("<img src='{{config('url')}}/"+data.result.file+"'>");
+             var file=`<div class="col-xs-6 col-md-3">
+              <input type="hidden" name='album[]' value=`+data.result.file+` data-thumb=`+data.result.thumbpath+`>
+                  <a href="#" class="thumbnail">
+                    <img src="{{config('url')}}/`+data.result.file+`" alt="...">
+                  </a>
+                </div>`;
+              $(".showcover").append(file);
+
             }else{
               // alert(data.result.msg);
             }
@@ -77,5 +79,38 @@ $(function(){
         .parent().addClass($.support.fileInput ? undefined : 'disabled');
 
 });
+
+function savephoto(){
+  var file={
+    'album':[]
+  };
+
+  $("input[name='album[]']").each(function(k,obj){
+    var filepath = $(obj).val();
+    var thumb = $(obj).attr('data-thumb');
+    file.album.push({'path':filepath,'thumb':thumb});
+  });
+
+
+  console.log(file);
+       $.ajax({
+        type: 'POST',
+        url: "{{url('doalbum')}}",
+        data:JSON.stringify(file),
+        dataType: 'json',
+        headers: {
+        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+        },
+        success: function(data){
+             
+        },
+        error: function(xhr, type){
+        alert('Ajax error!')
+        }
+    });
+   
+
+
+}
 </script>
 @endsection
