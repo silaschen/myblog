@@ -140,6 +140,7 @@
 
     function settag(id){
         tag=id;
+	page=1;
         loadblog();
     }
 
