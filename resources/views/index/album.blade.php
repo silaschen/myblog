@@ -10,8 +10,8 @@
 						 @foreach($list as $v)
 						<article class="thumb">
 							<a href="{{config('url')}}/{{$v->path}}" class="image"><img src="{{config('url')}}/{{$v->thumb}}" alt="" /></a>
-							<h2>Magna feugiat lorem</h2>
-							<p>Nunc blandit nisi ligula magna sodales lectus elementum non. Integer id venenatis velit.</p>
+							<h2>show from my life</h2>
+							<p>This is some photos from my life,including some moments in my real life..</p>
 						</article>
 						 @endforeach
 
