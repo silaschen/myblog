@@ -16,7 +16,7 @@ Route::get('list/{page}',"Index@list");
 Route::get('read/{id}',"Index@read");
 Route::any('write',"Index@write");
 Route::post('uploadImg',"Index@uploadImg");
-Route::post('blog','Index@blog');
+Route::post('/blog','Index@blog');
 Route::any('uploadeditor','Index@uploadeditor');
 Route::any("edit/{id}","Index@edit");
 Route::post("comment/{id}","Index@comment");
