@@ -82,7 +82,7 @@
 		
 
 <div class="blog-clear-margin blog-sidebar-widget blog-bor am-g ">
-            <h2 class="blog-title"><span>笑一笑，十年少(数据来源后台python爬取，每两小时更新一大波搞笑段子)</span></h2>
+            <h2 class="blog-title"><span>笑一笑，十年少</span></h2>
             <div class="am-u-sm-12 blog-clear-padding">
 
                

@@ -57,7 +57,7 @@
         <input type="text" class="am-form-field am-input-sm" name="search" placeholder="搜索">
         <span onclick="searchBlog()" style="display: inline-block;background: #239cd8;height: 2.5rem;margin-left: -5px;cursor: pointer;color: azure;padding:0 5px;">搜索</span>
 	<span class="label label-success" style="padding:8px;"> <?php  $redis=new \Redis();$redis->connect('127.0.0.1','6379');$redis->select(3);$n = $redis->get('VIEW_NUM|blog');echo $n?>人来过这里</span>     
-<span id="num"></span>
+
  </div>
     </form>
   </div>
@@ -106,49 +106,7 @@
 
       var ws = new WebSocket("ws://13.112.100.120:8090");
       ws.onopen=function(){
-  			
- $.ajax({
-        type: 'POST',
-        url: "{{url('/onlinenum')}}",
-        dataType: 'json',
-        headers: {
-        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-        },
-        success: function(data){
-             $("#num").html("当前在线: "+data.num);
-        },
-        error: function(xhr, type){
-        alert('Ajax error!')
-        }
-    });
-
-
-	    }
-
-	ws.onmessage=function(event){
-			
-		 $.ajax({
-        type: 'POST',
-        url: "{{url('/onlinenum')}}",
-        dataType: 'json',
-        headers: {
-        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-        },
-        success: function(data){
-             $("#num").html("当前在线: "+data.num);
-        },
-        error: function(xhr, type){
-        alert('Ajax error!')
-        }
-    });
-		
-
-	}
-
-
-
-
-	
+      }
   });
 </script>
 </body>

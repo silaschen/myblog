@@ -254,4 +254,20 @@ class Index extends Controller{
 		imagejpeg($tn, $small_img); //输出图像
 	}
 
+	public function online(){
+		$redis = new \Redis();
+		$redis->connect('127.0.0.1',6379);
+		$redis->select(3);
+		$num = $redis->llen('USER');
+		header("Content-Type:application/json");
+		echo json_encode(['num'=>$num]);
+
+
+
+	}
+
+
+
+
+
 }
