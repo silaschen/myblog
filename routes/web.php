@@ -25,3 +25,5 @@ Route::get("/album","Index@album");
 Route::any('/uploadShare',"Index@uploadShare");
 Route::any("/uploadImgForShare",'Index@uploadImgForShare');
 Route::any("/doalbum","Index@doalbum");
+Route::any("/chat","Index@chat");
+Route::post("/onlinenum","Index@online");
