@@ -200,5 +200,35 @@ loadblog();
 
 
 </script>
+
 <!-- content end -->
-@endsection
+<script type="text/javascript">
+
+function aaa(){
+
+var da={};
+da.age=15;
+da.cli='dsa';
+
+
+		$.ajax({
+		url:'https://codata.lenovo.com/default/h5stat/stat',
+		type:'POST',
+		data:JSON.stringify(da),
+		headers:{'CODATAPARTNER':'38cee49a34b3f78c06407720f645afc0',
+			
+
+		},
+		success:function(res){
+
+			console.log(res)
+		}
+	}
+
+	)
+}
+	
+
+
+	
+</script>@endsection
