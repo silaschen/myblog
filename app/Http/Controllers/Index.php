@@ -7,10 +7,8 @@ class Index extends Controller{
 	const UPLOAD_PATH = 'upload/ck';
 	private static $ranknum = 6;
 	public function index(){
-
 		$rank=DB::select(sprintf("select * from blog order by view desc limit %d",self::$ranknum));
 		$tag = DB::select("select * from tag order by relation desc");
-
 		//count view number
 		$redis = new \Redis();
 		$redis->connect('127.0.0.1','6379');
@@ -41,6 +39,39 @@ class Index extends Controller{
 		return sprintf("%s|%s",'VIEW_NUM','blog');
 
 	}
+
+	public function test(){
+		
+
+		$ret = self::CallServer("http://mservicetst.cochat.lenovo.com/coreport/index.html",'GET');
+			var_dump($ret);
+	}
+
+
+
+	public static function CallServer($url,$method='GET',$header=array(),$data=array()){
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		if(!empty($header)) curl_setopt($ch, CURLOPT_HTTPHEADER, $header);//设置http头信息
+		curl_setopt($ch, CURLOPT_HEADER, false);//开启将输出数据流
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+                curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);//	TRUE 将curl_exec()获取的信息以字符串返回，而不是直接输出。
+		if($method === 'POST'){
+			curl_setopt($ch, CURLOPT_POST, true);//发起post请求
+			curl_setopt($ch, CURLOPT_POSTFIELDS, is_array($data) ? json_encode($data):$data);
+		}
+		$content = curl_exec($ch);
+        $code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+//	var_dump(curl_error($ch));
+        curl_close($ch);
+        return array(
+            'code' => $code,
+            'content' => $content,
+        );
+	}
+
+
 	public function blog(){
 
 		$tag = filter_input(INPUT_POST, 'tag') ? filter_input(INPUT_POST, 'tag') : null;
@@ -72,6 +103,16 @@ class Index extends Controller{
 
 	//READ BLOG
 	public function read($id){
+		//var_dump($_SERVER);
+		if(array_key_exists("HTTP_DAAUTH",$_SERVER)){
+			$token = $_SERVER['HTTP_DAAUTH'];
+		echo $token;
+		 $header = array('CODATAPARTNER:38cee49a34b3f78c06407720f645afc0','DAAUTH:'.$token,'User-Agent:SADWE23432423432','IP:127.0.0.1');
+               $ret =self::CallServer("https://codata.lenovo.com/partner/auth/mobiletoken",'GET',$header);
+              print_r($ret);
+
+	}
+		
 		$blog = DB::select("select * from blog where id=?",[$id])[0];
 		$comment = DB::select(sprintf("select * from blog_comment where blogid=%d order by id desc",$id));
 		$tags = DB::select(sprintf("SELECT * FROM tag where id in (select tagid from tag_blog where blogid=%d)",$id));
@@ -212,7 +253,7 @@ class Index extends Controller{
 	
 	
 	//http curl
-	public function Curl_Http($url,$header=array(),$data=null){
+	public function Curl_Http($url,$method='GET',$header=array(),$data=[]){
 		$handler = curl_init();
 		curl_setopt($handler,CURLOPT_URL,$url);
 		curl_setopt($handler,CURLOPT_RETURNTRANSFER,true);
@@ -265,9 +306,6 @@ class Index extends Controller{
 
 
 	}
-
-
-
 
 
 }

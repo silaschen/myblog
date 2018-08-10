@@ -35,7 +35,7 @@ class Fetch():
 	   		if ass:
 		            joke.append(ass)
 		# return joke
-		self.r.setex('JOKE',json.dumps(joke),60*60*2)
+		self.r.setex('JOKE',json.dumps(joke),60*60*2+60*10)
 		print(json.dumps(joke))
 	def GetAll(self):
 		#for x in range(1,self.page+1):
